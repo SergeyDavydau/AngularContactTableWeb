@@ -1,0 +1,151 @@
+<div class="card my-5">
+  <div class="card-body">
+    <form (ngSubmit)="onSubmit()" #contactForm="ngForm">
+      <div class="form-group">
+        <label for="name">Имя</label>
+        <input type="text" [(ngModel)]="contact.name"
+               class="form-control"
+               id="name"
+               name="name"
+               placeholder="Введите имя"
+                #name="ngModel">
+      </div>
+
+      <div class="form-group">
+        <label for="sur_name">Фамилия</label>
+        <input type="text" [(ngModel)]="contact.sur_name"
+               class="form-control"
+               id="sur_name"
+               name="sur_name"
+               placeholder="Введите фамилию"
+                #sur_name="ngModel">
+      </div>
+
+      <div class="form-group">
+        <label for="last_name">Отчество</label>
+        <input type="text" [(ngModel)]="contact.last_name"
+               class="form-control"
+               id="last_name"
+               name="last_name"
+               placeholder="Введите отчество"
+                #last_name="ngModel">
+      </div>
+
+      <div class="form-group">
+        <label for="date_of_birth">Дата рождения</label>
+        <input type="date" [(ngModel)]="contact.date_of_birth"
+               class="form-control"
+               id="date_of_birth"
+               name="date_of_birth"
+               placeholder="Введите дату рождения"
+                #date_of_birth="ngModel">
+      </div>
+
+      <div class="form-group">
+        <label for="post_adres">Почтовый адрес</label>
+        <input type="text" [(ngModel)]="contact.post_adres"
+               class="form-control"
+               id="post_adres"
+               name="post_adres"
+               placeholder="Введите почтовый адрес"
+                #post_adres="ngModel">
+      </div>
+
+      <div class="form-group">
+        <label for="home_adres">Домашний адрес</label>
+        <input type="text" [(ngModel)]="contact.home_adres"
+               class="form-control"
+               id="home_adres"
+               name="home_adres"
+               placeholder="Введите домашний адрес"
+                #home_adres="ngModel">
+      </div>
+
+      <div class="row">
+
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label for="email">добавить адрес эл. почты</label>
+            <input type="text" [(ngModel)]="email.adress"
+                   class="select form-control"
+                   id="email"
+                   name="email"
+                   placeholder="Введите адрес эл. почты"
+                   #adress="ngModel">
+          </div>
+
+          <div align="right">
+            <label> Сделать избранным</label>
+          </div>
+
+          <ul>
+            <div class="row" *ngFor="let mail of contact.email_adres; let i = index">
+
+              <div class="col-sm-8" style="display: inline">
+                <li style="display: inline">
+                  <a (click)="deleteObjectInList(i, contact.email_adres)">
+                    <fa-icon [icon]="delete_icon"></fa-icon>
+                  </a>
+                </li>
+                <li style="display: inline; margin-left: 10px">
+                  {{mail.adress}}
+                </li>
+                <li style="display: inline" value="i">{{mail.chosen}}</li>
+              </div>
+
+              <div class="col-sm-4" style="display: inline" align="right">
+                <input id ="mail{{i}}" (click)="setChosenRecordInlist(i, contact.email_adres)" type="checkbox" [checked]="mail.chosen">
+              </div>
+
+            </div>
+          </ul>
+        </div>
+
+        <div class="col-sm-4" style="margin-left: 10%">
+          <div class="form-group">
+            <label for="number">добавить телефонный номер</label>
+            <input type="text" [(ngModel)]="telephone.number"
+                   class="select form-control"
+                   id="number"
+                   name="number"
+                   placeholder="Введите телефонный номер"
+                   #number="ngModel">
+          </div>
+
+          <div align="right">
+            <label> Сделать избранным</label>
+          </div>
+
+          <ul>
+            <div class="row" *ngFor="let telephone of contact.telephon_numbers; let i = index">
+
+              <div class="col-sm-8" style="display: inline">
+                <li style="display: inline">
+                  <a (click)="deleteObjectInList(i, contact.telephon_numbers)">
+                    <fa-icon [icon]="delete_icon"></fa-icon>
+                  </a>
+                </li>
+                <li style="display: inline; margin-left: 10px">
+                  {{telephone.number}}
+                </li>
+              </div>
+
+              <div class="col-sm-4" style="display: inline" align="right">
+                <input id ="telephone{{i}}" (click)="setChosenRecordInlist(i, contact.telephon_numbers)" type="checkbox" [checked]="telephone.chosen">
+              </div>
+
+            </div>
+          </ul>
+        </div>
+
+      </div>
+
+
+      <button type="submit" [disabled]="!contactForm.form.valid"
+              class="btn btn-info">Отправить
+      </button>
+    </form>
+  </div>
+
+</div>
+

@@ -1,0 +1,53 @@
+<div class="card my-5">
+  <div class="card-body">
+    <table class="table table-bordered table-striped">
+      <thead class="thead-dark">
+      <tr>
+        <th></th>
+        <th></th>
+        <th scope="col">Имя</th>
+        <th scope="col">Фамилия</th>
+        <th scope="col">Отчество</th>
+        <th scope="col">День рождения</th>
+        <th scope="col">Почтовый адрес</th>
+        <th scope="col">Домашний адрес</th>
+        <th scope="col">Адрес эл. почты</th>
+        <th scope="col">Телефонный номер</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let contact of contacts">
+        <td>
+          <a routerLink="/contact_edit/{{contact.id}}" class="btn">
+            <fa-icon [icon]="edit_icon"></fa-icon>
+          </a>
+        </td>
+        <td>
+          <a routerLink="/contact_delete/{{contact.id}}" class="btn">
+            <fa-icon [icon]="delete_icon"></fa-icon>
+          </a>
+        </td>
+        <td>{{ contact.name }}</td>
+        <td>{{ contact.sur_name }}</td>
+        <td>{{ contact.last_name }}</td>
+        <td>{{ contact.date_of_birth }}</td>
+        <td>{{ contact.post_adres }}</td>
+        <td>{{ contact.home_adres }}</td>
+        <td>
+          <select class="browser-default custom-select">
+            <option *ngFor="let email of contact.email_adres" >{{ email.adress }}</option>
+          </select>
+        </td>
+        <td>
+          <select class="browser-default custom-select">
+            <option *ngFor="let number of contact.telephon_numbers" >{{ number.number }}</option>
+          </select>
+        </td>
+
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
